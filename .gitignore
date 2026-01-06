@@ -3,3 +3,4 @@ __pycache__
 outputs
 ckpts
 data
+datagen_test/rho_data_ethanol.pbe.npz

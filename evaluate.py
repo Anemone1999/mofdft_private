@@ -286,9 +286,20 @@ def worker(args, device, model, taskid):
     print(f'| GT etot:', gt_etot)
     print(f'| GT terms:', gt_terms)
 
+
     if args.evaluate_rho:
         grid_weights = torch.tensor(grid.weights)
         gt_rho = driver.ofdft.all_auxao_values() @ gt_coeff.cpu()
+        #save_dict = {
+        #    "gt_rho": gt_rho,
+        #    "grid_weights": grid_weights,
+        #    "auxao_values": driver.ofdft.all_auxao_values(),  # 辅助基组值
+        #    "gt_coeff_cpu": gt_coeff.cpu()                   # 系数矩阵（CPU张量）
+        #}
+        #save_path = (f"rho_data_{args.molecule}.npz")
+        #np.savez_compressed(save_path, **save_dict)
+        #print(f"已保存为npz文件：{save_path}")
+        
     
     if args.molecule in ['qm9.pbe.isomer', 'ethanol.pbe']:
         auxao_ovlp = torch.tensor(driver.auxmol.intor('int1e_ovlp')).to(device)
@@ -338,7 +349,7 @@ def worker(args, device, model, taskid):
         total_grad_proj_norm = projected_grad.detach().norm()
 
         if args.evaluate_rho:
-            auxrho = driver.auxrho()
+            auxrho = driver.auxrho()      # self.ofdft.all_auxao_values() @ self.coeff_for_input.detach().cpu()
             minrho = auxrho.min().item()
             maxrho = auxrho.max().item()
             rho_le0 = (auxrho < 0).sum().item()

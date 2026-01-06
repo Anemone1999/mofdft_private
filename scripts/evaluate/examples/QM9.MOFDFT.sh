@@ -9,7 +9,7 @@ PREDICTION_TYPE=Ts_res
 
 OUTPUT_ROOT=${save_root}
 TAG=1e-3
-STEPS=1000
+STEPS=300
 LR=1e-3
 INIT=minao
 EXTRACMD="--use-svd --use-local-frame --grid-level 2 --task-id -1 --task-count -1 --evaluate-force --add-delta-at-init"

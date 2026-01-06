@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import e3nn
+from e3nn import o3
 
 torch.pi = np.pi
 

@@ -1,0 +1,4 @@
+1. ofdft.drivers.__init__.py : change from .model --> from .graphormer
+2. ofdft/drivers/graphormer/model.py : change torch.load(...) --> torch.load(..., weight_only=False)
+3. ofdft/utils/rotations.py : added from e3nn import o3
+

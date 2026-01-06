@@ -567,7 +567,7 @@ def base_architecture(args):
     args.kernel_type = getattr(args, "kernel_type", 'rbf')
 
 def load_model(model_ckpt_path, use_ema=False):
-    ckpt = torch.load(model_ckpt_path, map_location='cpu')
+    ckpt = torch.load(model_ckpt_path, map_location='cpu', weights_only=False)
     model = Graphormer3D(ckpt['cfg']['model'])
     if use_ema:
         model.load_state_dict(ckpt['extra_state']['ema'])

@@ -1,2 +1,2 @@
 from .graphormer import GraphormerOFDFTDriver
-from .model import load_model
+from .graphormer import load_model
